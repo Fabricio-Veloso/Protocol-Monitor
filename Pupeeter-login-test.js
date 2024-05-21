@@ -2,7 +2,7 @@
 Its objective is to be the main function that is called given a certain amount of time.
 So the DB is kept updated.
 
-Its gos to the web page, opens all the dropdowns menus so the protocol showe apears at the screen
+Its goes to the web page, opens all the dropdowns menus so the protocols apears at the screen
 and start to copy the data*/
 
 
