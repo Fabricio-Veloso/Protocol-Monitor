@@ -1,0 +1,8 @@
+#build directories
+extern/
+
+#third party things
+build/
+
+#vscode
+vscode/
