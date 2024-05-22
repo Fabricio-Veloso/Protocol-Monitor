@@ -5,4 +5,7 @@ extern/
 build/
 
 #vscode
-vscode/
+.vscode/
+
+#librarires
+libraries/

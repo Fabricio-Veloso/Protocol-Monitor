@@ -35,18 +35,26 @@ add_executable(${PROJECT_NAME} main.cpp)
 # Altere o nome do arquivo de saída para .html
 set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
 
+
+
 target_link_options(${PROJECT_NAME} PRIVATE  
-    "-sUSE_WEBGPU=1"
+    "-sUSE_WEBGPU"
     "-sUSE_GLFW=3"
     "-sWASM=1"
-    "-sALLOW_MEMORY_GROWTH=1"
+    "-sALLOW_MEMORY_GROWTH"
     "-sNO_EXIT_RUNTIME=0"
     "-sASSERTIONS=1"
     "-sDISABLE_EXCEPTION_CATCHING=1"
     "-sNO_FILESYSTEM=1"
     "-sVERBOSE=0"
     "-sASYNCIFY"
+    "-sDYNAMIC_EXECUTION=0"
+    #"-sEMBIND_AOT=1"
+    "--emrun"
+    
+    
 )
+
 
 target_compile_options(${PROJECT_NAME} PRIVATE)
 
