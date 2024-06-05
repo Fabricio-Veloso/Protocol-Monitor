@@ -20,40 +20,48 @@ add_subdirectory("libraries/web-gpu")
 
 add_subdirectory("libraries/dear-im-gui")
 
-
-
+# (In 'if (EMSCRIPTEN)')
+set(SHELL_FILE shell_minimal.html)
 
 if (NOT EMSCRIPTEN)
     # Do not include this with emscripten, it provides its own version.
-    MENSAGE(STATUS "Sem emscripten")
+    MENSAGE(STATUS "\nSem emscripten\n")
     add_subdirectory("libraries/glfw")
 endif()
-
 
 add_executable(${PROJECT_NAME} main.cpp)
 
 # Altere o nome do arquivo de saída para .html
 set_target_properties(${PROJECT_NAME} PROPERTIES SUFFIX ".html")
 
-
+target_compile_options(${PROJECT_NAME} PRIVATE
+    "-Wall"
+    "-g3"
+)
 
 target_link_options(${PROJECT_NAME} PRIVATE  
+
     "-sUSE_WEBGPU"
+    "-jsDWEBGPU_DEBUG=1"
     "-sUSE_GLFW=3"
     "-sWASM=1"
-    "-sALLOW_MEMORY_GROWTH"
-    "-sNO_EXIT_RUNTIME=0"
+    "-sALLOW_MEMORY_GROWTH=1"
+    "-sNO_EXIT_RUNTIME=1"
     "-sASSERTIONS=1"
-    "-sDISABLE_EXCEPTION_CATCHING=1"
+    "-sDISABLE_EXCEPTION_CATCHING=0"
     "-sNO_FILESYSTEM=1"
     "-sVERBOSE=0"
     "-sASYNCIFY"
     "-sDYNAMIC_EXECUTION=0"
     #"-sEMBIND_AOT=1"
     "--emrun"
+    "-Wall"
+    "-g3"
+    --shell-file "${CMAKE_CURRENT_SOURCE_DIR}/${SHELL_FILE}"
     
-    
-)
+   
+
+) 
 
 
 target_compile_options(${PROJECT_NAME} PRIVATE)
